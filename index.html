@@ -1,19 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RPG Forge - Browser RPG Engine</title>
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -25,579 +17,532 @@ content="width=device-width, initial-scale=1.0"
        ===================================================== -->
 
   <header class="topbar">
-<div class="brand">
-  <div class="brand-mark">RPG</div>
 
-  <div class="brand-copy">
-    <strong>RPG FORGE</strong>
-    <span>BROWSER RPG ENGINE</span>
-  </div>
-</div>
+    <div class="brand">
+      <div class="brand-mark">⚔</div>
 
+      <div class="brand-copy">
+        <strong>RPG FORGE</strong>
+        <span>BROWSER RPG ENGINE</span>
+      </div>
+    </div>
 
-<div class="mode-switch">
+    <div class="mode-switch">
 
-  <button
-    id="editModeBtn"
-    class="mode-btn active"
-  >
-    EDITOR
-  </button>
+      <button id="editModeBtn" class="mode-btn active">
+        🛠 EDITOR
+      </button>
 
-  <button
-    id="playModeBtn"
-    class="mode-btn"
-  >
-    PLAYTEST
-  </button>
+      <button id="playModeBtn" class="mode-btn">
+        ▶ PLAYTEST
+      </button>
 
-</div>
+    </div>
 
+    <div class="top-actions">
 
-<div class="top-actions">
+      <button id="newProjectBtn">
+        ✨ NEW
+      </button>
 
-  <button id="newProjectBtn">
-    NEW
-  </button>
+      <button id="saveBtn">
+        💾 SAVE
+      </button>
 
-  <button id="saveBtn">
-    SAVE
-  </button>
+      <button id="loadBtn">
+        📂 LOAD
+      </button>
 
-  <button id="loadBtn">
-    LOAD
-  </button>
+      <button id="exportBtn">
+        📤 EXPORT
+      </button>
 
-  <button id="exportBtn">
-    EXPORT
-  </button>
+      <label class="import-btn">
+        📥 IMPORT
+        <input
+          type="file"
+          id="importInput"
+          accept=".json"
+        >
+      </label>
 
-  <label class="import-btn">
-    IMPORT
-    <input
-      type="file"
-      id="importInput"
-      accept=".json"
-    >
-  </label>
+    </div>
 
-</div>
   </header>
+
 
   <!-- =====================================================
        MAIN WORKSPACE
        ===================================================== -->
 
   <main class="workspace">
-<!-- ===================================================
-     LEFT SIDEBAR
-     =================================================== -->
 
-<aside class="sidebar left-sidebar">
+    <!-- ===================================================
+         LEFT SIDEBAR
+         =================================================== -->
+
+    <aside class="sidebar left-sidebar">
+
+      <!-- TOOLS -->
+
+      <section class="panel">
+
+        <div class="panel-title">
+          🛠 EDIT TOOLS
+        </div>
+
+        <button
+          class="tool-btn active"
+          data-tool="paint"
+        >
+          <span>🖌️</span>
+          Paint Tile
+        </button>
+
+        <button
+          class="tool-btn"
+          data-tool="erase"
+        >
+          <span>🧹</span>
+          Erase Tile
+        </button>
+
+        <button
+          class="tool-btn"
+          data-tool="npc"
+        >
+          <span>🧙</span>
+          Place NPC
+        </button>
+
+        <button
+          class="tool-btn"
+          data-tool="start"
+        >
+          <span>🚩</span>
+          Player Start
+        </button>
+
+      </section>
+
+
+      <!-- TILES -->
+
+      <section class="panel">
+
+        <div class="panel-title">
+          🧱 TILE PALETTE
+        </div>
+
+        <div class="tile-palette">
+
+          <button
+            class="tile-option selected"
+            data-tile="grass"
+          >
+            <span class="tile-preview grass"></span>
+            🌿 Grass
+          </button>
+
+          <button
+            class="tile-option"
+            data-tile="water"
+          >
+            <span class="tile-preview water"></span>
+            🌊 Water
+          </button>
+
+          <button
+            class="tile-option"
+            data-tile="sand"
+          >
+            <span class="tile-preview sand"></span>
+            🏜️ Sand
+          </button>
+
+          <button
+            class="tile-option"
+            data-tile="stone"
+          >
+            <span class="tile-preview stone"></span>
+            🪨 Stone
+          </button>
+
+          <button
+            class="tile-option"
+            data-tile="wall"
+          >
+            <span class="tile-preview wall"></span>
+            🧱 Wall
+          </button>
+
+          <button
+            class="tile-option"
+            data-tile="tree"
+          >
+            <span class="tile-preview tree"></span>
+            🌳 Tree
+          </button>
 
+        </div>
 
-  <!-- TOOLS -->
+      </section>
 
-  <section class="panel">
 
-    <div class="panel-title">
-      EDIT TOOLS
-    </div>
+      <!-- MAP SETTINGS -->
 
+      <section class="panel">
 
-    <button
-      class="tool-btn active"
-      data-tool="paint"
-    >
-      <span>[P]</span>
-      Paint Tile
-    </button>
+        <div class="panel-title">
+          🗺️ MAP SETTINGS
+        </div>
 
+        <label class="field-label">
+          Width
+        </label>
 
-    <button
-      class="tool-btn"
-      data-tool="erase"
-    >
-      <span>[E]</span>
-      Erase Tile
-    </button>
+        <input
+          id="mapWidth"
+          type="number"
+          min="5"
+          max="50"
+          value="16"
+        >
 
+        <label class="field-label">
+          Height
+        </label>
 
-    <button
-      class="tool-btn"
-      data-tool="npc"
-    >
-      <span>[N]</span>
-      Place NPC
-    </button>
+        <input
+          id="mapHeight"
+          type="number"
+          min="5"
+          max="40"
+          value="12"
+        >
 
+        <button
+          id="resizeMapBtn"
+          class="wide-btn"
+        >
+          ↔ APPLY MAP SIZE
+        </button>
 
-    <button
-      class="tool-btn"
-      data-tool="start"
-    >
-      <span>[S]</span>
-      Player Start
-    </button>
+      </section>
 
-  </section>
 
+      <!-- HELP -->
 
-  <!-- TILES -->
+      <section class="panel help-panel">
 
-  <section class="panel">
+        <div class="panel-title">
+          🎮 CONTROLS
+        </div>
 
-    <div class="panel-title">
-      TILE PALETTE
-    </div>
+        <div class="help-row">
+          <span>🚶 Move</span>
+          <kbd>WASD</kbd>
+        </div>
 
+        <div class="help-row">
+          <span>🚶 Move</span>
+          <kbd>ARROWS</kbd>
+        </div>
 
-    <div class="tile-palette">
+        <div class="help-row">
+          <span>💬 Interact</span>
+          <kbd>SPACE</kbd>
+        </div>
 
+      </section>
 
-      <button
-        class="tile-option selected"
-        data-tile="grass"
-      >
-        <span class="tile-preview grass"></span>
-        Grass
-      </button>
+    </aside>
 
 
-      <button
-        class="tile-option"
-        data-tile="water"
-      >
-        <span class="tile-preview water"></span>
-        Water
-      </button>
+    <!-- ===================================================
+         CENTER EDITOR
+         =================================================== -->
 
+    <section class="editor-area">
 
-      <button
-        class="tile-option"
-        data-tile="sand"
-      >
-        <span class="tile-preview sand"></span>
-        Sand
-      </button>
+      <div class="editor-header">
 
+        <div class="editor-title">
 
-      <button
-        class="tile-option"
-        data-tile="stone"
-      >
-        <span class="tile-preview stone"></span>
-        Stone
-      </button>
+          <strong id="projectTitle">
+            My RPG
+          </strong>
 
+          <span id="editorStatus">
+            🛠 Editor Mode
+          </span>
 
-      <button
-        class="tile-option"
-        data-tile="wall"
-      >
-        <span class="tile-preview wall"></span>
-        Wall
-      </button>
+        </div>
 
+        <div class="zoom-controls">
 
-      <button
-        class="tile-option"
-        data-tile="tree"
-      >
-        <span class="tile-preview tree"></span>
-        Tree
-      </button>
+          <button id="zoomOut" title="Zoom out">
+            −
+          </button>
 
-    </div>
+          <span id="zoomValue">
+            32px
+          </span>
 
-  </section>
+          <button id="zoomIn" title="Zoom in">
+            +
+          </button>
 
+        </div>
 
-  <!-- MAP SETTINGS -->
-
-  <section class="panel">
-
-    <div class="panel-title">
-      MAP SETTINGS
-    </div>
-
-
-    <label class="field-label">
-      Width
-    </label>
-
-    <input
-      id="mapWidth"
-      type="number"
-      min="5"
-      max="50"
-      value="16"
-    >
-
-
-    <label class="field-label">
-      Height
-    </label>
-
-    <input
-      id="mapHeight"
-      type="number"
-      min="5"
-      max="40"
-      value="12"
-    >
-
-
-    <button
-      id="resizeMapBtn"
-      class="wide-btn"
-    >
-      APPLY MAP SIZE
-    </button>
-
-  </section>
-
-
-  <!-- HELP -->
-
-  <section class="panel help-panel">
-
-    <div class="panel-title">
-      CONTROLS
-    </div>
-
-    <div class="help-row">
-      <span>Move</span>
-      <kbd>WASD</kbd>
-    </div>
-
-    <div class="help-row">
-      <span>Move</span>
-      <kbd>ARROWS</kbd>
-    </div>
-
-    <div class="help-row">
-      <span>Interact</span>
-      <kbd>SPACE</kbd>
-    </div>
-
-  </section>
-
-</aside>
-
-
-<!-- ===================================================
-     CENTER EDITOR
-     =================================================== -->
-
-<section class="editor-area">
-
-
-  <div class="editor-header">
-
-    <div class="editor-title">
-
-      <strong id="projectTitle">
-        My RPG
-      </strong>
-
-      <span id="editorStatus">
-        Editor Mode
-      </span>
-
-    </div>
-
-
-    <div class="zoom-controls">
-
-      <button id="zoomOut">
-        -
-      </button>
-
-      <span id="zoomValue">
-        32px
-      </span>
-
-      <button id="zoomIn">
-        +
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <div id="canvasWrapper">
-
-    <div id="gameCanvas"></div>
-
-    <div
-      id="playerSprite"
-      class="player-sprite"
-    >
-      HERO
-    </div>
-
-  </div>
-
-
-  <footer class="bottom-bar">
-
-    <span id="cursorPosition">
-      X: 0 Y: 0
-    </span>
-
-    <span>
-      <b>MODE</b>
-      <strong id="bottomMode">
-        EDITOR
-      </strong>
-    </span>
-
-    <span>
-      <b>TOOL</b>
-      <strong id="currentTool">
-        PAINT
-      </strong>
-    </span>
-
-    <span class="engine-status">
-      [OK] ENGINE READY
-    </span>
-
-  </footer>
-
-</section>
-
-
-<!-- ===================================================
-     RIGHT SIDEBAR
-     =================================================== -->
-
-<aside class="sidebar right-sidebar">
-
-
-  <!-- PROJECT -->
-
-  <section class="panel">
-
-    <div class="panel-title">
-      PROJECT
-    </div>
-
-
-    <label class="field-label">
-      Project Name
-    </label>
-
-    <input
-      id="projectName"
-      value="My RPG"
-      maxlength="40"
-    >
-
-  </section>
-
-
-  <!-- NPC EDITOR -->
-
-  <section class="panel">
-
-    <div class="panel-title">
-      NPC INSPECTOR
-    </div>
-
-
-    <div id="npcEmpty">
-
-      <div class="empty-state-icon">
-        [NPC]
       </div>
 
-      <p>
-        Select the NPC tool and click
-        a map tile to create or edit
-        an NPC.
-      </p>
 
-    </div>
+      <div id="canvasWrapper">
 
+        <div id="gameCanvas"></div>
 
-    <div
-      id="npcEditor"
-      hidden
-    >
+        <div
+          id="playerSprite"
+          class="player-sprite"
+        >
+          🧙
+        </div>
 
-      <label class="field-label">
-        Name
-      </label>
-
-      <input
-        id="npcName"
-        value="Villager"
-        maxlength="30"
-      >
+      </div>
 
 
-      <label class="field-label">
-        Dialogue
-      </label>
+      <footer class="bottom-bar">
 
-      <textarea
-        id="npcDialogue"
-        maxlength="500"
-      >Hello, traveler!</textarea>
+        <span id="cursorPosition">
+          📍 X: 0 Y: 0
+        </span>
 
+        <span>
+          <b>MODE</b>
+          <strong id="bottomMode">
+            EDITOR
+          </strong>
+        </span>
 
-      <label class="field-label">
-        Character
-      </label>
+        <span>
+          <b>TOOL</b>
+          <strong id="currentTool">
+            PAINT
+          </strong>
+        </span>
 
-      <select id="npcIcon">
+        <span class="engine-status">
+          🟢 ENGINE READY
+        </span>
 
-        <option value="P">
-          [P] Person
-        </option>
+      </footer>
 
-        <option value="M">
-          [M] Man
-        </option>
-
-        <option value="W">
-          [W] Woman
-        </option>
-
-        <option value="Z">
-          [Z] Wizard
-        </option>
-
-        <option value="E">
-          [E] Elf
-        </option>
-
-        <option value="X">
-          [X] Enemy
-        </option>
-
-        <option value="R">
-          [R] Royal
-        </option>
-
-      </select>
+    </section>
 
 
-      <button
-        id="deleteNpcBtn"
-        class="danger-btn"
-      >
-        DELETE NPC
-      </button>
+    <!-- ===================================================
+         RIGHT SIDEBAR
+         =================================================== -->
 
-    </div>
+    <aside class="sidebar right-sidebar">
 
-  </section>
+      <!-- PROJECT -->
 
+      <section class="panel">
 
-  <!-- PLAYER -->
+        <div class="panel-title">
+          📁 PROJECT
+        </div>
 
-  <section class="panel">
+        <label class="field-label">
+          Project Name
+        </label>
 
-    <div class="panel-title">
-      PLAYER
-    </div>
+        <input
+          id="projectName"
+          value="My RPG"
+          maxlength="40"
+        >
 
-
-    <div class="stat-row">
-
-      <span>HP</span>
-
-      <strong id="playerHp">
-        100 / 100
-      </strong>
-
-    </div>
+      </section>
 
 
-    <div class="stat-row">
+      <!-- NPC EDITOR -->
 
-      <span>Attack</span>
+      <section class="panel">
 
-      <strong id="playerAttack">
-        12
-      </strong>
+        <div class="panel-title">
+          🧙 NPC INSPECTOR
+        </div>
 
-    </div>
+        <div id="npcEmpty">
+
+          <div class="empty-state-icon">
+            🧙
+          </div>
+
+          <p>
+            Select the NPC tool and click
+            a map tile to create or edit
+            an NPC.
+          </p>
+
+        </div>
+
+        <div
+          id="npcEditor"
+          hidden
+        >
+
+          <label class="field-label">
+            Name
+          </label>
+
+          <input
+            id="npcName"
+            value="Villager"
+            maxlength="30"
+          >
+
+          <label class="field-label">
+            Dialogue
+          </label>
+
+          <textarea
+            id="npcDialogue"
+            maxlength="500"
+          >Hello, traveler!</textarea>
+
+          <label class="field-label">
+            Character
+          </label>
+
+          <select id="npcIcon">
+
+            <option value="P">
+              🧑 Person
+            </option>
+
+            <option value="M">
+              👨 Man
+            </option>
+
+            <option value="W">
+              👩 Woman
+            </option>
+
+            <option value="Z">
+              🧙 Wizard
+            </option>
+
+            <option value="E">
+              🧝 Elf
+            </option>
+
+            <option value="X">
+              👹 Enemy
+            </option>
+
+            <option value="R">
+              👑 Royal
+            </option>
+
+          </select>
+
+          <button
+            id="deleteNpcBtn"
+            class="danger-btn"
+          >
+            🗑 DELETE NPC
+          </button>
+
+        </div>
+
+      </section>
 
 
-    <div class="stat-row">
+      <!-- PLAYER -->
 
-      <span>Gold</span>
+      <section class="panel">
 
-      <strong id="playerGold">
-        50
-      </strong>
+        <div class="panel-title">
+          🧙 PLAYER
+        </div>
 
-    </div>
+        <div class="stat-row">
+          <span>❤️ HP</span>
+          <strong id="playerHp">
+            100 / 100
+          </strong>
+        </div>
 
-  </section>
+        <div class="stat-row">
+          <span>⚔️ Attack</span>
+          <strong id="playerAttack">
+            12
+          </strong>
+        </div>
 
+        <div class="stat-row">
+          <span>🪙 Gold</span>
+          <strong id="playerGold">
+            50
+          </strong>
+        </div>
 
-  <!-- INVENTORY -->
-
-  <section class="panel">
-
-    <div class="panel-title">
-      INVENTORY
-    </div>
-
-
-    <div id="inventoryList"></div>
-
-
-    <button
-      id="addPotionBtn"
-      class="wide-btn"
-    >
-      + ADD HEALTH POTION
-    </button>
-
-  </section>
+      </section>
 
 
-  <!-- ENGINE INFO -->
+      <!-- INVENTORY -->
 
-  <section class="panel engine-info">
+      <section class="panel">
 
-    <div class="panel-title">
-      ENGINE
-    </div>
+        <div class="panel-title">
+          🎒 INVENTORY
+        </div>
 
-    <div class="engine-stat">
-      <span>Map</span>
-      <strong id="mapInfo">
+        <div id="inventoryList"></div>
 
-        16 x 12
-      </strong>
-    </div>
+        <button
+          id="addPotionBtn"
+          class="wide-btn"
+        >
+          🧪 ADD HEALTH POTION
+        </button>
 
-    <div class="engine-stat">
-      <span>NPCs</span>
-      <strong id="npcCount">
-        0
-      </strong>
-    </div>
+      </section>
 
-    <div class="engine-stat">
-      <span>Tile Size</span>
-      <strong id="tileInfo">
-        32px
-      </strong>
-    </div>
 
-  </section>
+      <!-- ENGINE INFO -->
 
-</aside>
+      <section class="panel engine-info">
+
+        <div class="panel-title">
+          ⚙️ ENGINE
+        </div>
+
+        <div class="engine-stat">
+          <span>🗺️ Map</span>
+          <strong id="mapInfo">16 x 12</strong>
+        </div>
+
+        <div class="engine-stat">
+          <span>🧙 NPCs</span>
+          <strong id="npcCount">0</strong>
+        </div>
+
+        <div class="engine-stat">
+          <span>📐 Tile Size</span>
+          <strong id="tileInfo">32px</strong>
+        </div>
+
+      </section>
+
+    </aside>
+
   </main>
+
 
   <!-- =====================================================
        DIALOGUE
@@ -607,41 +552,42 @@ content="width=device-width, initial-scale=1.0"
     id="dialogueOverlay"
     class="overlay hidden"
   >
-<div class="dialogue-box">
 
-  <div class="dialogue-header">
+    <div class="dialogue-box">
 
-    <div
-      id="dialoguePortrait"
-      class="dialogue-portrait"
-    >
-      NPC
+      <div class="dialogue-header">
+
+        <div
+          id="dialoguePortrait"
+          class="dialogue-portrait"
+        >
+          🧙
+        </div>
+
+        <div
+          id="dialogueName"
+          class="dialogue-name"
+        >
+          Villager
+        </div>
+
+      </div>
+
+      <div
+        id="dialogueText"
+        class="dialogue-text"
+      >
+        Hello!
+      </div>
+
+      <button id="dialogueClose">
+        ▶ CONTINUE
+      </button>
+
     </div>
 
-    <div
-      id="dialogueName"
-      class="dialogue-name"
-    >
-      Villager
-    </div>
-
   </div>
 
-
-  <div
-    id="dialogueText"
-    class="dialogue-text"
-  >
-    Hello!
-  </div>
-
-
-  <button id="dialogueClose">
-    CONTINUE
-  </button>
-
-</div>
-  </div>
 
   <!-- =====================================================
        COMBAT
@@ -651,91 +597,92 @@ content="width=device-width, initial-scale=1.0"
     id="combatOverlay"
     class="overlay hidden"
   >
-<div class="combat-window">
 
-  <div class="combat-title">
-    [!] BATTLE
-  </div>
+    <div class="combat-window">
 
-
-  <div class="combatants">
-
-
-    <div class="fighter">
-
-      <div class="fighter-icon">
-        HERO
+      <div class="combat-title">
+        ⚔️ BATTLE ⚔️
       </div>
 
-      <strong>
-        HERO
-      </strong>
+      <div class="combatants">
 
-      <div class="hp-bar">
-        <div id="heroHpBar"></div>
+        <div class="fighter">
+
+          <div class="fighter-icon">
+            🧙
+          </div>
+
+          <strong>
+            HERO
+          </strong>
+
+          <div class="hp-bar">
+            <div id="heroHpBar"></div>
+          </div>
+
+          <span id="heroCombatHp">
+            100 / 100
+          </span>
+
+        </div>
+
+
+        <div class="versus">
+          VS
+        </div>
+
+
+        <div class="fighter">
+
+          <div class="fighter-icon">
+            👹
+          </div>
+
+          <strong id="enemyName">
+            Goblin
+          </strong>
+
+          <div class="hp-bar">
+            <div id="enemyHpBar"></div>
+          </div>
+
+          <span id="enemyCombatHp">
+            60 / 60
+          </span>
+
+        </div>
+
       </div>
 
-      <span id="heroCombatHp">
-        100 / 100
-      </span>
+
+      <div
+        id="combatLog"
+        class="combat-log"
+      >
+        ⚠️ A wild enemy appears!
+      </div>
+
+
+      <div class="combat-actions">
+
+        <button id="attackBtn">
+          ⚔️ ATTACK
+        </button>
+
+        <button id="potionBtn">
+          🧪 POTION
+        </button>
+
+        <button id="runBtn">
+          🏃 RUN
+        </button>
+
+      </div>
 
     </div>
 
-
-    <div class="versus">
-      VS
-    </div>
-
-
-    <div class="fighter">
-
-      <div class="fighter-icon">
-        ENEMY
-      </div>
-
-      <strong id="enemyName">
-        Goblin
-      </strong>
-
-      <div class="hp-bar">
-        <div id="enemyHpBar"></div>
-      </div>
-
-      <span id="enemyCombatHp">
-        60 / 60
-      </span>
-
-    </div>
-
   </div>
 
-
-  <div
-    id="combatLog"
-    class="combat-log"
-  >
-    A wild enemy appears!
-  </div>
-
-
-  <div class="combat-actions">
-
-    <button id="attackBtn">
-      [A] ATTACK
-    </button>
-
-    <button id="potionBtn">
-      [P] POTION
-    </button>
-
-    <button id="runBtn">
-      RUN
-    </button>
-
-  </div>
-
-</div>
-  </div>
 
   <!-- =====================================================
        NOTIFICATION
